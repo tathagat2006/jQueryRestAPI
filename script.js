@@ -5,9 +5,18 @@ function getUsers(done) {
     })
 }
 
+function toggleClass(newActiveTab) {
+    $('.nav > li >a').removeClass('active')
+    $(`#tab-${newActiveTab}`).addClass('active')
+    $('.contents').hide()
+    $(`#container-${newActiveTab}`).show()
+
+}
+
 $(function() {
 
     $('#tab-users').click(() => {
+        toggleClass('users')
         getUsers((users) => {
             users.forEach((user) => {
                 $('#row-users').append(
@@ -30,5 +39,17 @@ $(function() {
                 )
             })
         })
+    })
+
+    $('#tab-albums').click(() => {
+        toggleClass('albums')
+    })
+
+    $('#tab-posts').click(() => {
+        toggleClass('posts')
+    })
+
+    $('#tab-todos').click(() => {
+        toggleClass('todos')
     })
 })
